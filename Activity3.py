@@ -40,5 +40,56 @@ def binary_search(sorted_array, target):
         return False #when start is greater than end, target value does not exist in array, so it returns false
 
 
-     
+'''This file contains code for phase 3 and 4'''
+def merge_sort(data):
+    '''This function uses merge sort algorithm to sort a unsorted list'''
+    if len(data) <= 1:
+        return data
+    mid = len(data) // 2
+    left = data[:mid]#dividing in half
+    right = data[mid:]
+    left = merge_sort(left)# use of recursive function
+    right = merge_sort(right)# use of recursive function, allowsfor splitting of the array to multiple single element arrays
+    data_merged = []#empty list
+    i = 0 # starting index for the left lists
+    j = 0 # starting index for the right lists
+    while i < len(left) and j < len(right):#comparing of first element of two arrays in order to merge
+        if left[i] < right[j]:
+            data_merged.append(left[i])#sorting of data using merging
+            i += 1
+        else:
+            data_merged.append(right[j])#sorting of data using merging
+            j += 1
+    while i < len(left):#sorting of data using merging if condition for j is broken
+        data_merged.append(left[i])#sorting of data using merging
+        i += 1
+    while j < len(right):#sorting of data using merging if condition for i is broken
+        data_merged.append(right[j])
+        j += 1
+    return data_merged # returning of sorted array
+
+def linear_search(data, target):
+    '''this function uses linear search to find the target's index'''
+    for i in range(len(data)):
+        if data[i] == target:
+            return i
+
+def linear_search_time(sorted_data,target):
+    '''function calculates time taken for linear search find the target '''
+    start_time = time.perf_counter()#the time at which function start
+    linear_index = linear_search(sorted_data, target)
+    end_time = time.perf_counter()#the time at which function end
+    linear_time = end_time - start_time#net time
+    return linear_time
+    
+
+def binary_search_time(sorted_data,target):
+    '''function calculates time taken for linear search find the target '''
+    start_time = time.perf_counter() #the time at which function start
+    binary_index = linear_search(sorted_data, target)
+    end_time = time.perf_counter()#the time at which function end
+    binary_time = end_time - start_time#net time
+    return binary_time
+
+
 
